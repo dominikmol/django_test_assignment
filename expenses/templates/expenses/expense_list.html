@@ -41,6 +41,12 @@
 	  </tr>
 	{% endfor %}
 	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan='5'>total amount spent</th>
+			<th>{{ total_expanses|floatformat:2 }}</th>
+		</tr>
+	</tfoot>
 </table>
 
 {% include "_pagination.html" %}
@@ -51,6 +57,19 @@
     {% for category, total in summary_per_category.items %}
 	<tr>
 		<td>{{category}}:</td>
+		<td>{{total|floatformat:2}}</td>
+	</tr>
+	{% endfor %}
+  </tr>
+</table>
+
+<hr>
+<table border="1">
+  <caption>Summary per month</caption>
+  <tr>
+    {% for month, total in summary_per_month.items %}
+	<tr>
+		<td>{{month|date:"M Y"}}</td>
 		<td>{{total|floatformat:2}}</td>
 	</tr>
 	{% endfor %}
